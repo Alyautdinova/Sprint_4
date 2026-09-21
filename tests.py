@@ -129,7 +129,7 @@ class TestBooksCollector:
         collector.add_book_in_favorites(book_Name_2)
 
         # проверка что обе книги в Избранном
-        assert len(collector.favorites) == 2
+        assert len(collector.get_list_of_favorites_books()) == 2
 
     #тест 8 - добавляем книгу в Избранное
     def test_delete_book_from_favorites_one_book(self):
@@ -154,4 +154,4 @@ class TestBooksCollector:
         collector.delete_book_from_favorites(book_Name_1)
 
         # проверка что одна книга в Избранном
-        assert len(collector.favorites) == 1
+        assert len(collector.get_list_of_favorites_books()) == 1
