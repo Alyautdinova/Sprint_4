@@ -99,3 +99,22 @@ class TestBooksCollector:
         collector.add_book_in_favorites(book_Name_2)
 
         assert len(collector.favorites) == 2
+
+    #тест 8 - добавляем книгу в Избранное
+    def test_delete_book_from_favorites_one_book(self):
+        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_2 = 'Преступление и наказание'
+
+        collector = BooksCollector()
+        collector.add_new_book(book_Name_1)
+        collector.add_new_book(book_Name_2)
+
+        collector.set_book_genre(book_Name_1, 'Фантастика')
+        collector.set_book_genre(book_Name_2, 'Детективы')
+
+        collector.add_book_in_favorites(book_Name_1)
+        collector.add_book_in_favorites(book_Name_2)
+
+        collector.delete_book_from_favorites(book_Name_1)
+
+        assert len(collector.favorites) == 1
