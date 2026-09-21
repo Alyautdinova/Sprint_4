@@ -54,14 +54,32 @@ class TestBooksCollector:
     def test_get_books_with_specific_genre_by_exist_genre(self):
         book_Name_1 = 'Гарри Поттер и филосовский камень'
         book_Name_2 = 'Гарри Поттер и кубок огня'
-        books_genre = 'Фантастика'
+        book_Name_3 = 'Шерлок Холмс'
+        books_genre_1 = 'Фантастика'
+        books_genre_2 = 'Детективы'
+
+        collector = BooksCollector()
+        collector.add_new_book(book_Name_1)
+        collector.add_new_book(book_Name_2)
+        collector.add_new_book(book_Name_3)
+
+        collector.set_book_genre(book_Name_1, books_genre_1)
+        collector.set_book_genre(book_Name_2, books_genre_1)
+        collector.set_book_genre(book_Name_3, books_genre_2)
+
+        assert len(collector.get_books_with_specific_genre(books_genre_1)) == 2
+
+    #тест 6 - получение списка книг для детей
+    def test_get_books_for_children_one_book_for_children(self):
+        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_2 = 'Стивен кинг'
 
         collector = BooksCollector()
         collector.add_new_book(book_Name_1)
         collector.add_new_book(book_Name_2)
 
-        collector.set_book_genre(book_Name_1, books_genre)
-        collector.set_book_genre(book_Name_2, books_genre)
+        collector.set_book_genre(book_Name_1, 'Фантастика')
+        collector.set_book_genre(book_Name_2, 'Ужасы')
 
-        assert len(collector.get_books_with_specific_genre(books_genre)) == 2
+        assert len(collector.get_books_for_children()) == 1
     
