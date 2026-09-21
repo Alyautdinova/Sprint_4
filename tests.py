@@ -82,4 +82,20 @@ class TestBooksCollector:
         collector.set_book_genre(book_Name_2, 'Ужасы')
 
         assert len(collector.get_books_for_children()) == 1
-    
+
+    #тест 7 - добавляем книгу в Избранное
+    def test_add_book_in_favorites_two_books(self):
+        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_2 = 'Преступление и наказание'
+
+        collector = BooksCollector()
+        collector.add_new_book(book_Name_1)
+        collector.add_new_book(book_Name_2)
+
+        collector.set_book_genre(book_Name_1, 'Фантастика')
+        collector.set_book_genre(book_Name_2, 'Детективы')
+
+        collector.add_book_in_favorites(book_Name_1)
+        collector.add_book_in_favorites(book_Name_2)
+
+        assert len(collector.favorites) == 2
