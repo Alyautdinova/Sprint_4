@@ -37,21 +37,36 @@ class TestBooksCollector:
         assert len(collector.get_books_genre()) == 0
 
     # тест 3 - установка жанра из списка genre
-    @pytest.mark.parametrize('books_genre',['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'])
-    def test_set_book_genre_from_genre_list(self, books_genre):
+    @pytest.mark.parametrize('genre_name',['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'])
+    def test_set_book_genre_from_genre_list(self, genre_name):
         book_Name = 'Преступление и наказание'
         collector = BooksCollector()
 
         # добавление книги
         collector.add_new_book(book_Name)
 
-        # установка жанра books_genre
-        collector.set_book_genre(book_Name, books_genre)
+        # установка жанра genre_name
+        collector.set_book_genre(book_Name, genre_name)
 
         # проверка установленного жанра по названию книги book_Name
-        assert collector.books_genre[book_Name] == books_genre
+        assert collector.books_genre[book_Name] == genre_name
 
-    # тест 4 - получение жанра по существующей книге
+    # тест 4 - установка жанра НЕ из списка genre
+    @pytest.mark.parametrize('genre_name',['Драма', 'Мелодрама'])
+    def test_set_book_genre_from_no_genre_list(self, genre_name):
+        book_Name = 'Преступление и наказание'
+        collector = BooksCollector()
+
+        # добавление книги
+        collector.add_new_book(book_Name)
+
+        # установка жанра genre_name
+        collector.set_book_genre(book_Name, genre_name)
+
+        # проверка что жанр не из списка genre не устанавливается
+        assert collector.books_genre[book_Name] == ''
+
+    # тест 5 - получение жанра по существующей книге
     def test_get_book_genre_by_exist_book_name(self):
         book_Name = 'Гарри Поттер'
         books_genre = 'Фантастика'
@@ -66,7 +81,7 @@ class TestBooksCollector:
         # проверка жанра по названию книги book_Name
         assert collector.get_book_genre(book_Name) == books_genre
 
-    #тест 5 - получение списка книг по существующему жанру
+    #тест 6 - получение списка книг по существующему жанру
     def test_get_books_with_specific_genre_by_exist_genre(self):
         book_Name_1 = 'Гарри Поттер и филосовский камень'
         book_Name_2 = 'Гарри Поттер и кубок огня'
@@ -89,7 +104,7 @@ class TestBooksCollector:
         # проверка списка книг по указанному жанру books_genre_1
         assert len(collector.get_books_with_specific_genre(books_genre_1)) == 2
 
-    #тест 6 - получение списка книг для детей
+    #тест 7 - получение списка книг для детей
     def test_get_books_for_children_one_book_for_children(self):
         book_Name_1 = 'Гарри Поттер и филосовский камень'
         book_Name_2 = 'Стивен кинг'
@@ -109,7 +124,7 @@ class TestBooksCollector:
         # проверка что жанр Ужасы и Детективы не для детей
         assert len(collector.get_books_for_children()) == 1
 
-    #тест 7 - добавляем книгу в Избранное
+    #тест 8 - добавляем книгу в Избранное
     def test_add_book_in_favorites_two_books(self):
         book_Name_1 = 'Гарри Поттер и филосовский камень'
         book_Name_2 = 'Преступление и наказание'
@@ -131,7 +146,7 @@ class TestBooksCollector:
         # проверка что обе книги в Избранном
         assert len(collector.get_list_of_favorites_books()) == 2
 
-    #тест 8 - добавляем книгу в Избранное
+    #тест 9 - удаляем книгу из Избранного
     def test_delete_book_from_favorites_one_book(self):
         book_Name_1 = 'Гарри Поттер и филосовский камень'
         book_Name_2 = 'Преступление и наказание'
@@ -155,3 +170,4 @@ class TestBooksCollector:
 
         # проверка что одна книга в Избранном
         assert len(collector.get_list_of_favorites_books()) == 1
+        
