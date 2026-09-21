@@ -49,4 +49,19 @@ class TestBooksCollector:
         collector.add_new_book(book_Name)
         collector.set_book_genre(book_Name, books_genre)
         assert collector.get_book_genre(book_Name) == books_genre
+
+    #тест 5 - получение списка книг по существующему жанру
+    def test_get_books_with_specific_genre_by_exist_genre(self):
+        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_2 = 'Гарри Поттер и кубок огня'
+        books_genre = 'Фантастика'
+
+        collector = BooksCollector()
+        collector.add_new_book(book_Name_1)
+        collector.add_new_book(book_Name_2)
+
+        collector.set_book_genre(book_Name_1, books_genre)
+        collector.set_book_genre(book_Name_2, books_genre)
+
+        assert len(collector.get_books_with_specific_genre(books_genre)) == 2
     
