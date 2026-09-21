@@ -31,3 +31,13 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(name)
         assert len(collector.get_books_genre()) == 0
+
+    #тест 3 - установка жанра из списка genre
+    @pytest.mark.parametrize('books_genre',['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'])
+    def test_set_book_genre_from_genre_list(self, books_genre):
+        book_Name = 'Преступление и наказание'
+        collector = BooksCollector()
+        collector.add_new_book(book_Name)
+        collector.set_book_genre(book_Name, books_genre)
+        assert collector.books_genre[book_Name] == books_genre
+    
