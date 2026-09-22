@@ -162,4 +162,20 @@ class TestBooksCollector:
 
         # проверка что одна книга в Избранном
         assert len(collector.get_list_of_favorites_books()) == 1
+
+    #тест 10 - получение всего словаря
+    def test_get_books_genre(self):
+        book_Name = 'Гарри Поттер и филосовский камень'
+        genre_name = 'Фантастика'
+
+        collector = BooksCollector()
+
+        # добавление книги
+        collector.add_new_book(book_Name)
+
+        # установка жанра книге
+        collector.set_book_genre(book_Name, genre_name)
+
+        # проверка что книга book_Name с жанром genre_name в словаре books_genre
+        assert collector.get_books_genre() == {book_Name:genre_name}
         
