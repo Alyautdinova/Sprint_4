@@ -135,10 +135,6 @@ class TestBooksCollector:
         collector.add_new_book(book_Name_1)
         collector.add_new_book(book_Name_2)
 
-        # установка жанров книгам
-        collector.set_book_genre(book_Name_1, 'Фантастика')
-        collector.set_book_genre(book_Name_2, 'Детективы')
-
         # добавление двух кних в Избранное
         collector.add_book_in_favorites(book_Name_1)
         collector.add_book_in_favorites(book_Name_2)
@@ -156,10 +152,6 @@ class TestBooksCollector:
         # добавление двух книг
         collector.add_new_book(book_Name_1)
         collector.add_new_book(book_Name_2)
-
-        # установка жанров книгам
-        collector.set_book_genre(book_Name_1, 'Фантастика')
-        collector.set_book_genre(book_Name_2, 'Детективы')
 
         # добавление двух кних в Избранное
         collector.add_book_in_favorites(book_Name_1)
