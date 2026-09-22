@@ -83,7 +83,7 @@ class TestBooksCollector:
 
     #тест 6 - получение списка книг по существующему жанру
     def test_get_books_with_specific_genre_by_exist_genre(self):
-        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_1 = 'Гарри Поттер и философский камень'
         book_Name_2 = 'Гарри Поттер и кубок огня'
         book_Name_3 = 'Шерлок Холмс'
         books_genre_1 = 'Фантастика'
@@ -106,7 +106,7 @@ class TestBooksCollector:
 
     #тест 7 - получение списка книг для детей
     def test_get_books_for_children_one_book_for_children(self):
-        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_1 = 'Гарри Поттер и философский камень'
         book_Name_2 = 'Стивен кинг'
         book_Name_3 = 'Шерлок Холмс'
 
@@ -126,7 +126,7 @@ class TestBooksCollector:
 
     #тест 8 - добавляем книгу в Избранное
     def test_add_book_in_favorites_two_books(self):
-        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_1 = 'Гарри Поттер и философский камень'
         book_Name_2 = 'Преступление и наказание'
 
         collector = BooksCollector()
@@ -144,7 +144,7 @@ class TestBooksCollector:
 
     #тест 9 - удаляем книгу из Избранного
     def test_delete_book_from_favorites_one_book(self):
-        book_Name_1 = 'Гарри Поттер и филосовский камень'
+        book_Name_1 = 'Гарри Поттер и философский камень'
         book_Name_2 = 'Преступление и наказание'
 
         collector = BooksCollector()
@@ -163,9 +163,9 @@ class TestBooksCollector:
         # проверка что одна книга в Избранном
         assert len(collector.get_list_of_favorites_books()) == 1
 
-    #тест 10 - получение всего словаря
+    #тест 10 - получение словаря books_genre
     def test_get_books_genre(self):
-        book_Name = 'Гарри Поттер и филосовский камень'
+        book_Name = 'Гарри Поттер и философский камень'
         genre_name = 'Фантастика'
 
         collector = BooksCollector()
@@ -178,4 +178,22 @@ class TestBooksCollector:
 
         # проверка что книга book_Name с жанром genre_name в словаре books_genre
         assert collector.get_books_genre() == {book_Name:genre_name}
+
+    #тест 11 - получение списка избранных
+    def test_get_list_of_favorites_books(self):
+        book_Name_1 = 'Гарри Поттер и философский камень'
+        book_Name_2 = 'Преступление и наказание'
+
+        collector = BooksCollector()
+
+        # добавление двух книг
+        collector.add_new_book(book_Name_1)
+        collector.add_new_book(book_Name_2)
+
+        # добавление двух кних в Избранное
+        collector.add_book_in_favorites(book_Name_1)
+        collector.add_book_in_favorites(book_Name_2)
+
+        # проверка что обе книги в Избранном
+        assert collector.get_list_of_favorites_books() == [book_Name_1, book_Name_2]
         
